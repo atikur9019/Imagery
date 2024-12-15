@@ -22,6 +22,7 @@
     --text-clr: #fff;
     --btn-clr: #3671E9;
     --secondary-clr: #59C19C;
+    --scrollbar-clr: #2c2c2c;
 }
 
 body {
@@ -38,6 +39,10 @@ body.light-mode {
     --text-clr: #151414;
     --btn-clr: #151414;
     --secondary-clr: #F8FAFC;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 
@@ -149,6 +154,7 @@ main.main-container {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
 
 
@@ -164,6 +170,8 @@ main.main-container {
     user-select: none;
     position: relative;
     margin-bottom: 200px;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .main-container .search-container .search-content {
@@ -220,8 +228,8 @@ section.image-show-container {
 }
 
 section.image-show-container div {
-    width: 500px;
-    height: 600px;
+    width: 400px;
+    height: 500px;
     border-radius: 10px;
     background: var(--secondary-clr);
     cursor: pointer;
@@ -233,8 +241,8 @@ section.image-show-container div:hover {
 }
 
 section.image-show-container img {
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
 }
@@ -257,11 +265,20 @@ section.image-show-container a:hover {
 
 /* ===============================main response styles===============================*/
 
-.main-container .search-container {
-   margin-right: 20px;
-   margin-left: 20px;
-}
 
+@media screen and (max-width: 831px) {
+    
+    section.image-show-container div {
+        width: 450px;
+        height: 550px;
+    }
+
+    section.image-show-container img {
+        width: 450px;
+        height: 450px;
+    }
+    
+}
 
 /* ---------------------------------all access styles--------------------------------- */
 
