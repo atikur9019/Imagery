@@ -1,0 +1,272 @@
+/* ---------------------------------google font poppins & Plus Jakarta Sans--------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* ---------------------------------custom styles--------------------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -ms-user-select: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    color: var(--text-clr);
+    -webkit-user-select: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --bg-clr: #1D1E23;
+    --header-clr: #222831;
+    --text-clr: #fff;
+    --btn-clr: #3671E9;
+    --secondary-clr: #59C19C;
+}
+
+body {
+    background: var(--bg-clr);
+    color: var(--text-clr);
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+body.light-mode {
+    --bg-clr: #9AA6B2;
+    --header-clr: #BCCCDC;
+    --text-clr: #151414;
+    --btn-clr: #151414;
+    --secondary-clr: #F8FAFC;
+}
+
+
+/* ---------------------------------header styles--------------------------------- */
+
+header.main-content {
+    position: fixed;
+    background: var(--header-clr);
+    width: 100%;
+    padding: 1.5rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10000;
+}
+
+.main-content .logo-link {
+    gap: 1rem;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.main-content .main-logo img {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-content .main-logo svg {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #222831;
+    border-radius: 50%;
+}
+
+.main-content .logo-text {
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+
+.main-content .mood-content {
+    gap: 0.5rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background: var(--bg-clr);
+    padding: 8px 12px;
+    border-radius: 10px;
+}
+
+.main-content .mood-content .mood-icon {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-content .mood-content .mood-text {
+    font-size: 1rem;
+    font-weight: 500;
+}
+/* =================================header response styles============================= */
+
+@media screen and (max-width: 600px) {
+    header.main-content {
+        padding: 1.5rem 1.5rem;
+    }
+
+    header.main-content .main-logo svg {
+        width: 55px;
+        height: 55px;
+    }
+
+    header.main-content .logo-text {
+        display: none;
+    }
+
+    header.main-content .mood-content .mood-icon {
+        font-size: 1.3rem;
+    }
+
+    header.main-content .mood-content .mood-text {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    header.main-content {
+        padding: 1rem 1rem;
+    }
+    
+}
+
+/* ---------------------------------main styles--------------------------------- */
+
+main.main-container {
+    padding-top: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.main-container .search-container {
+    width: 100%;
+    max-height: 50px;
+    margin-top: 20px;
+    max-width: 500px;
+    background: var(--header-clr);
+    border-radius: 20px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative;
+    margin-bottom: 200px;
+}
+
+.main-container .search-container .search-content {
+    width: 100%;
+}
+
+.search-container .search-content input.search-input{
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 1rem 1.5rem;
+    height: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.search-container .search-content input.search-input::placeholder {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.search-container .search-content input.search-input:focus {
+    border: 1px solid var(--btn-clr);
+    border-radius: 20px;
+    height: 50px;
+}
+
+.search-container .search-content .search-btn {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    height: 100%;
+    position: absolute;
+    right: 15px;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+section.image-show-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    /* grid-template-columns: repeat(400px, 1fr); */
+    place-items: center;
+    gap: 2rem;
+    margin-bottom: 50px;
+}
+
+section.image-show-container div {
+    width: 500px;
+    height: 600px;
+    border-radius: 10px;
+    background: var(--secondary-clr);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+section.image-show-container div:hover {
+    transform: scale(1.05);
+}
+
+section.image-show-container img {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+section.image-show-container a {
+    font-size: 1.2rem;
+    font-weight: 400;
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-clr);
+    display: block;
+    
+    transition: all 0.3s ease-in-out;
+}
+
+section.image-show-container a:hover {
+    text-decoration: underline;
+}
+
+/* ===============================main response styles===============================*/
+
+.main-container .search-container {
+   margin-right: 20px;
+   margin-left: 20px;
+}
+
+
+/* ---------------------------------all access styles--------------------------------- */
+
+.align {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
