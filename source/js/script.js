@@ -30,9 +30,7 @@ searchBtn.addEventListener('click', () => {
     let searchValue = searchInput.value;
     if (searchValue.trim() !== '') {
         fetchImages(searchValue);
-
         searchInput.blur();
-        console.log(searchValue);
     }
 });
 
@@ -59,13 +57,13 @@ async function fetchImages(searchValue) {
         });
         const data = await response.json();
         imageShowContainer.classList.remove('error')
+        console.log(data);
         displayImages(data.photos);
     } catch (error) {
-        let errorMessage = document.createElement('h2');
-        imageShowContainer.classList.add('error')
-        errorMessage.classList.add('error-message');
-        errorMessage.textContent = `${searchValue}-is not Found`;
-        imageShowContainer.appendChild(errorMessage);
+        imageShowContainer.innerHTML = `
+            <h2 class="error-message">${searchValue}-is not Found</h2>
+        `;
+        imageShowContainer.classList.add('error');
     }
 }
 
@@ -73,7 +71,10 @@ async function fetchImages(searchValue) {
 function displayImages(images) {
     imageShowContainer.innerHTML = '';
     images.forEach(image => {
-        console.log(image.src.large);
+        let div = document.createElement('div');
+        div.classList.add('div-container');
+        imageShowContainer.appendChild(div);
+
         let img = document.createElement('img');
         img.classList.add('image-item');
         img.src = image.src.large;
@@ -82,22 +83,42 @@ function displayImages(images) {
                                     <path d="M480-337q-8 0-15-2.5t-13-8.5L308-492q-12-12-11.5-28t11.5-28q12-12 28.5-12.5T365-549l75 75v-286q0-17 11.5-28.5T480-800q17 0 28.5 11.5T520-760v286l75-75q12-12 28.5-11.5T652-548q11 12 11.5 28T652-492L508-348q-6 6-13 8.5t-15 2.5ZM240-160q-33 0-56.5-23.5T160-240v-80q0-17 11.5-28.5T200-360q17 0 28.5 11.5T240-320v80h480v-80q0-17 11.5-28.5T760-360q17 0 28.5 11.5T800-320v80q0 33-23.5 56.5T720-160H240Z"/>
                                  </svg>`;
         downloadBtn.classList.add('download-btn');
+        downloadBtn.dataset.value = image.src.large;
         const downloadUrl = image.src.large;
-        downloadBtn.addEventListener('click', () => {
-            downloadImage(downloadUrl);
+        downloadBtn.addEventListener('click', async (event) => {
+            let url = event.currentTarget.dataset.value;
+            try {
+                const response2 = await fetch(url);
+                const file = await response2.blob();
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(file);
+                a.download = `imagery_photo_${new Date().getTime()}.jpg`;
+                a.click();
+            } catch (error) {
+                    return 'error';
+           }
+                
         });
     
-        imageShowContainer.appendChild(img);
-        img.appendChild(downloadBtn);
+        div.appendChild(img);
+        div.appendChild(downloadBtn);
     });
 }
 
-
-function downloadImage(url) {
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = url.split('/').pop();
-    body.appendChild(link);
-    link.click();
-    body.removeChild(link);
-}
+let btns = document.querySelectorAll('.download-btn').forEach(btn => {
+    btn.addEventListener('click', async (event) => {
+      const url = event.currentTarget.dataset.value;
+      console.log(url);
+    try {
+        const response1 = await fetch(url);
+        const file = await response1.blob();
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(file);
+        a.download = `imagery_photo_${new Date().getTime()}.jpg`;
+        a.click();
+    } catch (error) {
+        console.log(error);
+    }
+    });
+});
+  

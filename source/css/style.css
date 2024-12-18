@@ -40,6 +40,7 @@ body.light-mode {
     --text-clr: #151414;
     --btn-clr: #151414;
     --secondary-clr: #F8FAFC;
+    --mediaBtn: #393939;
 }
 
 
@@ -213,11 +214,41 @@ section.image-show-container {
     column-count: 4; 
     column-gap: 15px; 
     padding: 20px;
+    place-items: center;
+}
+
+section.image-show-container .result-box {
+    position: relative;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    margin-top: 20px;
+}
+
+.image-show-container .result-box .loading {
+    position: absolute;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.image-show-container .div-container {
+    break-inside: avoid;
+    margin-bottom: 15px;
+    position: relative;
 }
 
 
 section.image-show-container img {
-    position: relative;
     width: 100%; 
     margin-bottom: 15px; 
     border-radius: 8px;
@@ -232,7 +263,7 @@ section.image-show-container img:hover {
 
 .download-btn {
     position: absolute;
-    bottom: 10px;
+    bottom: 30px;
     right: 10px;
     background-color: var(--bg-clr);
     color: var(--text-clr);
@@ -240,6 +271,11 @@ section.image-show-container img:hover {
     padding: 5px 5px;
     border-radius: 8px;
     cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
 /* ===============================main response styles===============================*/
@@ -256,11 +292,38 @@ section.image-show-container img:hover {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
+    .main-container .search-container {
+        width: 430px !important;
+    }
+}
+
+@media (max-width: 460px) {
     section.image-show-container {
         column-count: 1;
     }
+
+    .main-container .search-container {
+        width: 400px !important;
+    }
+
+    section.image-show-container img:hover {
+        transform: scale(1) !important;
+    }
 }
+
+@media (max-width: 425px) {
+    .main-container .search-container {
+        width: 360px !important;
+    }
+}
+
+@media (max-width: 381px) {
+    .main-container .search-container {
+        width: 300px !important;
+    }
+}
+
 
 
 /* ---------------------------------all access styles--------------------------------- */
