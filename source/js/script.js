@@ -58,7 +58,15 @@ async function fetchImages(searchValue) {
         const data = await response.json();
         imageShowContainer.classList.remove('error')
         console.log(data);
-        displayImages(data.photos);
+        if (data.photos.length === 0) {
+            imageShowContainer.innerHTML = `
+                <h2 class="error-message">${searchValue}-is not Found</h2>
+            `;
+            imageShowContainer.classList.add('error');
+        }else {
+            displayImages(data.photos);
+            imageShowContainer.classList.remove('error');
+        }
     } catch (error) {
         imageShowContainer.innerHTML = `
             <h2 class="error-message">${searchValue}-is not Found</h2>
